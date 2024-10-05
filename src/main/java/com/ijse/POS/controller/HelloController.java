@@ -1,4 +1,4 @@
-package com.ijse.controller;
+package com.ijse.POS.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

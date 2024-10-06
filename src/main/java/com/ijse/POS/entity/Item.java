@@ -1,8 +1,4 @@
 package com.ijse.POS.entity;
-
-
-import java.util.Locale.Category;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,21 +20,19 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category; // This now uses your custom Category entity
 
     private String description;
 
     @Column(nullable = false)
     private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category; 
-
-    @Column(nullable = false, unique = true)
-    private String sku; // Stock Keeping Unit, a unique identifier for each item
-
     
 
+    
 }

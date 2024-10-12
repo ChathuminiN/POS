@@ -39,6 +39,7 @@ public class ItemController {
     public ResponseEntity<Item> createProduct(@RequestBody ItemReqDto itemReqDto) {
         Item item = new Item();
         item.setName(itemReqDto.getName());
+        item.setStock(itemReqDto.getStock());
         item.setDescription(itemReqDto.getDescription());
         item.setPrice(itemReqDto.getPrice());
         

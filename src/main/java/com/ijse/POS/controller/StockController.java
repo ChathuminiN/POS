@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +26,7 @@ public class StockController {
     private StockService stockService;
 
     // Adding stock for an item
-    @PostMapping("/add")
-  
+    @PostMapping("/add")  
     public ResponseEntity<Stock> addStock(@RequestBody StockReqDto stockReqDto) {
         try {
             Long itemId = stockReqDto.getItemId();
@@ -65,5 +65,6 @@ public class StockController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
     
 }

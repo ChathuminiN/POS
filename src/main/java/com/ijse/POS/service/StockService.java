@@ -15,5 +15,9 @@ public interface StockService {
 
     // Retrieve stock by item ID
     Optional<Stock> getStockByItemId(Long itemId) throws Exception;
+
+    
+    
+    
 }
 

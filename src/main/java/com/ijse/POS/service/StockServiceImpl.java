@@ -52,4 +52,8 @@ public class StockServiceImpl implements StockService {
     public Optional<Stock> getStockByItemId(Long itemId) throws Exception {
         return stockRepository.findByItemId(itemId);
     }
+
+
+   
+
 }

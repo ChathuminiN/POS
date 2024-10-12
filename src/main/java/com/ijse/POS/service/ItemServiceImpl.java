@@ -31,6 +31,7 @@ public class ItemServiceImpl implements ItemService {
         }else{
             existingItem.setName(item.getName());
             existingItem.setCategory(item.getCategory());
+            existingItem.setStock(item.getStock());
             existingItem.setDescription(item.getDescription());
             existingItem.setPrice(item.getPrice());
             

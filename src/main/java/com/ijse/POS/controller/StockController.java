@@ -5,14 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ijse.POS.dto.StockReqDto;
 import com.ijse.POS.entity.Stock;
@@ -26,7 +19,7 @@ public class StockController {
     private StockService stockService;
 
     // Adding stock for an item
-    @PostMapping("/add")  
+    @PostMapping("/add")
     public ResponseEntity<Stock> addStock(@RequestBody StockReqDto stockReqDto) {
         try {
             Long itemId = stockReqDto.getItemId();
@@ -38,7 +31,7 @@ public class StockController {
         }
     }
 
-    // updating stock for an item
+    // Updating stock for an item
     @PutMapping("/update")
     public ResponseEntity<Stock> updateStock(@RequestBody StockReqDto stockReqDto) {
         try {
@@ -52,11 +45,10 @@ public class StockController {
         }
     }
 
-    //  Getting stock information for an item
-    @GetMapping("/get")
-    public ResponseEntity<Stock> getStockByItemId(@RequestBody StockReqDto stockReqDto) {
+    // Getting stock information for an item using path variable
+    @GetMapping("/get/{itemId}")
+    public ResponseEntity<Stock> getStockByItemId(@PathVariable Long itemId) {
         try {
-            Long itemId = stockReqDto.getItemId();
             Optional<Stock> stock = stockService.getStockByItemId(itemId);
             return stock.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                         .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
@@ -65,6 +57,4 @@ public class StockController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
 }

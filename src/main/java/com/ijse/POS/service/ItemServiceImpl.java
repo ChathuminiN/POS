@@ -1,17 +1,18 @@
 package com.ijse.POS.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ijse.POS.entity.Item;
 import com.ijse.POS.repository.ItemRepository;
+
 @Service
 public class ItemServiceImpl implements ItemService {
     @Autowired
     
     private ItemRepository itemRepository;
+    
 
     @Override
     public List<Item> getItemList() {
@@ -19,9 +20,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item createItem(Item item) {
+    public Item createItem(Item item) {      
         return itemRepository.save(item);
     }
+
+    
 
     @Override
     public Item updateItem(Long Id, Item item) {

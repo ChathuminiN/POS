@@ -2,8 +2,14 @@ package com.ijse.POS.service;
 
 import com.ijse.POS.entity.Item;
 import com.ijse.POS.entity.Sales;
+import com.ijse.POS.entity.Stock;
+
 import com.ijse.POS.repository.ItemRepository;
 import com.ijse.POS.repository.SalesRepository;
+import com.ijse.POS.repository.StockRepository;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +24,10 @@ public class SalesServiceImpl implements SalesService {
     private SalesRepository salesRepository;
 
     @Autowired
-    private ItemRepository itemRepository; 
+    private ItemRepository itemRepository;
+    
+    @Autowired
+    private StockRepository stockRepository;
 
     
 
@@ -47,20 +56,28 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public List<Sales> checkout() {
+        
+
         if (cart.isEmpty()) {
             return null; // No items in the cart
         }
 
         List<Sales> completedSales = new ArrayList<>();
         for (Sales sale : cart) {
+            
             // Save each sale to the database
             Sales savedSale = salesRepository.save(sale);
             completedSales.add(savedSale);
 
-            // Update stock (assuming Item entity has a method to decrease stock)
+            // Update stock (it affect to Item entity stock and stock entity)
+            
             Item item = sale.getItem();
-            item.setStock(item.getStock() - sale.getQuantity());
+            Integer Avail_Stock=item.getStock() - sale.getQuantity();
+            item.setStock(Avail_Stock);
             itemRepository.save(item); // Save updated item
+            Stock updatedStock = stockRepository.findByItemId(item.getId()).orElse(null);
+            updatedStock.setQuantity(Avail_Stock);
+            updatedStock.setLastUpdated(LocalDateTime.now());
         }
 
         // Clear the cart after checkout

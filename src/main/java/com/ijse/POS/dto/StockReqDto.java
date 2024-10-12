@@ -5,11 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class StockReqDto {
-    private Long itemId;
-    private Integer quantity;
-
-    
+    private Long itemId; // ID of the item
+    private Integer quantity; // Quantity to add or update
 }
+
 

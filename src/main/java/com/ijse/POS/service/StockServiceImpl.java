@@ -4,6 +4,9 @@ import com.ijse.POS.entity.Item;
 import com.ijse.POS.entity.Stock;
 import com.ijse.POS.repository.ItemRepository;
 import com.ijse.POS.repository.StockRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +54,11 @@ public class StockServiceImpl implements StockService {
     @Override
     public Optional<Stock> getStockByItemId(Long itemId) throws Exception {
         return stockRepository.findByItemId(itemId);
+    }
+
+    @Transactional
+    public void deleteStockByItemId(Long itemId) {
+        stockRepository.deleteByItemId(itemId);
     }
 
 

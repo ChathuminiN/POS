@@ -9,6 +9,7 @@ import lombok.Setter;
 public class ItemReqDto {
     
     private String name;
+    private Integer stock;
     private String description;   
     private Double price;  
     private long catId;    

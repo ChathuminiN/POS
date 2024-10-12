@@ -1,7 +1,5 @@
 package com.ijse.POS.entity;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +10,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,3 +28,7 @@ public class User {
 
    
 }
+
+
+   
+

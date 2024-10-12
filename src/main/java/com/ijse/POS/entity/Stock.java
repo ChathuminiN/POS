@@ -30,6 +30,6 @@ public class Stock {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(name = "last_updated")
+    @Column(name = "last_updated", nullable = false)
     private LocalDateTime lastUpdated;
 }

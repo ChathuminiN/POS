@@ -1,17 +1,21 @@
 package com.ijse.POS.repository;
 
-import java.util.List;
-
+import com.ijse.POS.entity.Sales;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ijse.POS.entity.Sales;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface SalesRepository extends JpaRepository<Sales, Long> {
-    // Method to find sales by a specific user
-    List<Sales> findBySoldById(Long userId);
+    
+    // method to find sales by a specific date range
+    List<Sales> findBySoldAtBetween(LocalDateTime startDate, LocalDateTime endDate);
 
-    // Method to find sales by a specific item
-    List<Sales> findByItemId(Long itemId);
+    // method to find sales made by a specific user
+    // List<Sales> findBySoldById(Long userId);
+    
+    
 }
+

@@ -27,9 +27,9 @@ public class Sales {
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User soldBy; // Reference to the User who made the sale
+    // @ManyToOne
+    // @JoinColumn(name = "user_id", nullable = false)
+    // private User soldBy; // Reference to the User who made the sale
 
     @Column(nullable = false)
     private Integer quantity;

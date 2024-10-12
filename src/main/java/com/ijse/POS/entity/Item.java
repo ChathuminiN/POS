@@ -27,6 +27,9 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category; // This now uses your custom Category entity
 
+    @Column(nullable = false)
+    private Integer stock;
+
     private String description;
 
     @Column(nullable = false)

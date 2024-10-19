@@ -38,9 +38,12 @@ public class StockController {
             Long itemId = stockReqDto.getItemId();
             Integer quantity = stockReqDto.getQuantity();
             Stock stock = stockService.updateStock(itemId, quantity);
+            System.out.println("Success");
             return new ResponseEntity<>(stock, HttpStatus.OK);
+
         } catch (Exception e) {
             e.printStackTrace();  // Log the exception for debugging
+
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }

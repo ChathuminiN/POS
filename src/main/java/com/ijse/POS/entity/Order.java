@@ -16,33 +16,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-
 @Getter
 @Setter
-@Table(name="orders")// we cant use table name as "order"---bcoz,order is key word in mysql,therefore it should be other "orders"
+@Table(name = "orders") // Avoid "order" keyword as it's reserved in SQL
 public class Order {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime orderDateTime;
     private Double total_price;
 
-    @PrePersist //to set default value---to avoid back date orders
-    protected void onCreate(){
-        if(orderDateTime==null){
-            this.orderDateTime=LocalDateTime.now();
-
+    @PrePersist // To set default value and prevent backdate orders
+    protected void onCreate() {
+        if (orderDateTime == null) {
+            this.orderDateTime = LocalDateTime.now();
         }
-        
     }
+
     @ManyToMany
     @JoinTable(
-        name="Order_Item",
-        joinColumns = @JoinColumn(name="order_id"),
-        inverseJoinColumns=@JoinColumn(name="item-id")
+        name = "Order_Item",
+        joinColumns = @JoinColumn(name = "order_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id") // Changed "item-id" to "item_id"
     )
-    private List<Item>orderedItems;
-    
+    private List<Item> orderedItems;
 }
